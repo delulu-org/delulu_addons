@@ -1,0 +1,24 @@
+{
+  "addons": [
+    {
+      "id": "org.delulu.pd",
+      "name": "Public Domain Movies&Shows",
+      "version": "1.0.0",
+      "type": "http",
+      "description": "Public Domain Movies & TV Classics — High-Speed Direct Streams and Torrents",
+      "publisher": "delulu",
+      "manifestUrl": "https://pd.org-delulu.workers.dev/manifest.json",
+      "logo": "https://i.postimg.cc/VLw9QVgQ/pd-logo.png"
+    },
+    {
+      "id": "dev.not-phoenix.phoenix",
+      "name": "Phoenix",
+      "version": "1.0.0",
+      "type": "http",
+      "description": "High-Speed Meta & Trailer Resolver for Delulu",
+      "publisher": "not-phoenix",
+      "manifestUrl": "https://phoenix.not-phoenix.workers.dev/manifest.json",
+      "logo": "https://delulu-addons.pages.dev/default_addon_logo.png"
+    }
+  ]
+}
