@@ -18,7 +18,17 @@
       "description": "High-Speed Meta & Trailer Resolver for Delulu",
       "publisher": "not-phoenix",
       "manifestUrl": "https://phoenix.not-phoenix.workers.dev/manifest.json",
-      "logo": "https://delulu-addons.pages.dev/default_addon_logo.png"
+      "logo": "https://phoenix.not-phoenix.workers.dev/logo.png"
+    },
+    {
+      "id": "dev.not-phoenix.subfox",
+      "name": "SubFox",
+      "version": "1.0.0",
+      "type": "http",
+      "description": "High-Speed Multi-Language Subtitles for Delulu by not-phoenix",
+      "publisher": "not-phoenix",
+      "manifestUrl": "https://subfox.not-phoenix.workers.dev/manifest.json",
+      "logo": "https://subfox.not-phoenix.workers.dev/logo.png"
     }
   ]
 }
