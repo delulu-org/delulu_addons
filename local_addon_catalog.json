@@ -1,1 +1,5 @@
-
+{
+    "addons":  [
+                   "{\n  \"id\": \"dev.fearless.traileroo\",\n  \"name\": \"Traileroo\",\n  \"version\": \"0.1.0\",\n  \"type\": \"local\",\n  \"description\": \"Adds the official IMDb rating and trailers for a TMDB title.\",\n  \"publisher\": \"fearless\",\n  \"manifest_url\": \"https://raw.githubusercontent.com/KamruzzamanMahin/Signed_Local_Addons/main/traileroo/manifest.json\",\n  \"logo\": null\n}"
+               ]
+}
