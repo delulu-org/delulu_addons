@@ -1,5 +1,24 @@
 {
-    "addons":  [
-                   "{\n  \"id\": \"dev.fearless.traileroo\",\n  \"name\": \"Traileroo\",\n  \"version\": \"0.1.0\",\n  \"type\": \"local\",\n  \"description\": \"Adds the official IMDb rating and trailers for a TMDB title.\",\n  \"publisher\": \"fearless\",\n  \"manifest_url\": \"https://raw.githubusercontent.com/KamruzzamanMahin/Signed_Local_Addons/main/traileroo/manifest.json\",\n  \"logo\": null\n}"
-               ]
+  "addons": [
+    {
+      "id": "dev.fearless.traileroo",
+      "name": "Traileroo",
+      "version": "0.2.0",
+      "type": "local",
+      "description": "Adds the official IMDb rating and trailers for a TMDB title.",
+      "publisher": "fearless",
+      "manifestUrl": "https://raw.githubusercontent.com/KamruzzamanMahin/Signed_Local_Addons/main/traileroo/manifest.json",
+      "logo": "https://raw.githubusercontent.com/KamruzzamanMahin/Signed_Local_Addons/main/traileroo/Traileroo.png"
+    },
+    {
+      "id": "dev.fearless.rosseta",
+      "name": "Rosseta",
+      "version": "0.2.0",
+      "type": "local",
+      "description": "Official OpenSubtitles v3 subtitle provider for Delulu.",
+      "publisher": "fearless",
+      "manifestUrl": "https://raw.githubusercontent.com/KamruzzamanMahin/Signed_Local_Addons/main/rosseta/manifest.json",
+      "logo": "https://raw.githubusercontent.com/KamruzzamanMahin/Signed_Local_Addons/main/rosseta/Rosseta.png"
+    }
+  ]
 }
