@@ -1,13 +1,13 @@
 {
   "addons": [
     {
-      "id": "org.delulu.pd",
+      "id": "dev.not-phoenix.pd",
       "name": "Public Domain Movies&Shows",
       "version": "1.0.0",
       "type": "http",
       "description": "Public Domain Movies & TV Classics — High-Speed Direct Streams and Torrents",
-      "publisher": "delulu",
-      "manifestUrl": "https://pd.org-delulu.workers.dev/manifest.json",
+      "publisher": "not-phoenix",
+      "manifestUrl": "https://pd.not-phoenix.workers.dev/manifest.json",
       "logo": "https://i.postimg.cc/VLw9QVgQ/pd-logo.png"
     },
     {
