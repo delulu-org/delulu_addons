@@ -1,17 +1,21 @@
 // scripts/sync.mjs
 // Automated Addon Verification, Sanitization, and Version Sync Engine
+// Supports HTTP, Sandboxed JS, and Pre-audited Local Rust Addons
 
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ALLOWED_TYPES = ['http', 'js'];
 const REQUIRED_FIELDS = ['id', 'name', 'version', 'type', 'description', 'publisher'];
-const CATALOG_FILES = ['http_addon_catalog.json', 'js_addon_catalog.json'];
+const CATALOG_CONFIG = [
+  { filename: 'http_addon_catalog.json', expectedType: 'http' },
+  { filename: 'js_addon_catalog.json', expectedType: 'js' },
+  { filename: 'local_addon_catalog.json', expectedType: 'local' }, // Audited local addons
+];
 
 let totalUpdated = 0;
 let totalRemoved = 0;
 
-for (const filename of CATALOG_FILES) {
+for (const { filename, expectedType } of CATALOG_CONFIG) {
   const filePath = path.resolve(filename);
   if (!fs.existsSync(filePath)) {
     console.warn(`[WARN] ${filename} does not exist. Skipping.`);
@@ -35,7 +39,7 @@ for (const filename of CATALOG_FILES) {
   const cleanList = [];
   let fileModified = false;
 
-  console.log(`\n--- Checking ${filename} (${catalog.addons.length} addons) ---`);
+  console.log(`\n--- Checking ${filename} (${catalog.addons.length} addons, type: ${expectedType}) ---`);
 
   for (const addon of catalog.addons) {
     if (!addon.manifestUrl) {
@@ -67,9 +71,9 @@ for (const filename of CATALOG_FILES) {
 
       const remote = await res.json();
 
-      // RULE 1: Invalidate if type is local or unsupported
-      if (remote.type === 'local' || !ALLOWED_TYPES.includes(remote.type)) {
-        console.error(`[INVALIDATE/REMOVE] ${addon.id}: Illegal type '${remote.type}'. Local Rust addons are restricted from community catalog.`);
+      // RULE 1: Type check matches catalog category
+      if (remote.type !== expectedType) {
+        console.error(`[INVALIDATE/REMOVE] ${addon.id}: Manifest type '${remote.type}' does not match expected '${expectedType}'.`);
         totalRemoved++;
         fileModified = true;
         continue;
@@ -97,7 +101,7 @@ for (const filename of CATALOG_FILES) {
         continue;
       }
 
-      // RULE 4: Sanitize and strip unexpected/corrupt extra fields
+      // RULE 4: Sanitize fields to standard schema
       const sanitized = {
         id: remote.id.trim(),
         name: remote.name.trim(),
@@ -109,7 +113,7 @@ for (const filename of CATALOG_FILES) {
         logo: typeof remote.logo === 'string' && remote.logo.trim() ? remote.logo.trim() : addon.logo,
       };
 
-      // Check for changes (version bump, description update, etc.)
+      // Check for changes (version bump, description, name, logo)
       let changed = false;
       if (sanitized.version !== addon.version) {
         console.log(`  🚀 [VERSION BUMP] ${addon.id}: ${addon.version} -> ${sanitized.version}`);
