@@ -1,6 +1,16 @@
 {
   "addons": [
     {
+      "id": "dev.fearless.embegatorjs",
+      "name": "EmbegatorJS",
+      "version": "1.0.0",
+      "type": "js",
+      "description": "Direct stream resolver for movies and TV with adaptive MP4/HLS quality and embedded captions.",
+      "publisher": "fearless",
+      "manifestUrl": "https://raw.githubusercontent.com/KamruzzamanMahin/Js-Addons/refs/heads/main/EmbegatorJS/manifest.json",
+      "logo": "https://raw.githubusercontent.com/KamruzzamanMahin/Js-Addons/main/EmbegatorJS/embegatorjs.png"
+    },
+    {
       "id": "dev.fearless.traileroojs",
       "name": "TrailerooJS",
       "version": "1.1.0",
