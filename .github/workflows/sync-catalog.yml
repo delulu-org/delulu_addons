@@ -28,7 +28,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add http_addon_catalog.json js_addon_catalog.json
+          git add http_addon_catalog.json js_addon_catalog.json local_addon_catalog.json
           if ! git diff --cached --quiet; then
             git commit -m "chore(catalog): auto-sync addon versions [skip ci]"
             git push
