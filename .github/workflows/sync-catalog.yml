@@ -1,7 +1,38 @@
-name: test
-on: workflow_dispatch
+name: Sync Addon Catalog
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Auto-run every 6 hours
+  workflow_dispatch:      # Manual trigger button in GitHub Actions tab
+
+permissions:
+  contents: write
+
 jobs:
-  test:
+  sync:
+    name: Verify & Sync Manifests
     runs-on: ubuntu-latest
     steps:
-      - run: echo hello
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Manifest Verification & Auto-Sync
+        run: node scripts/sync.mjs
+
+      - name: Commit and Push Changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add http_addon_catalog.json js_addon_catalog.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(catalog): auto-sync addon versions [skip ci]"
+            git push
+            echo "Changes pushed to main."
+          else
+            echo "No changes detected. Catalog is up to date."
+          fi
